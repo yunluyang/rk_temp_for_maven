@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>孜晟新能源 - 动力环境监控平台</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta content="后台管理系统" />
+<meta content="luyang" name="author" />
+
+
+<!-- App favicon -->
+<link rel="shortcut icon" href="assets/images/favicon.ico">
+
+
+<!-- Plugin css -->
+<link href="css/vendor/fullcalendar.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Sweet Alert-->
+<link href="css/vendor/sweetalert2.min.css" rel="stylesheet"
+	type="text/css" />  
+	<!-- Notification css (Toastr) -->
+        <link href="css/vendor/toastr.min.css" rel="stylesheet" type="text/css" />
+<!-- App css -->
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+<link href="css/icons.min.css" rel="stylesheet" type="text/css" />
+<link href="css/app.min.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body style="color: black">
+
+	<!-- Navigation Bar-->
+	<header id="topnav">
+		<nav class="navbar-custom">
+
+			<div class="container-fluid">
+				<ul class="list-unstyled topbar-right-menu float-right mb-0">
+
+					<li class="dropdown notification-list">
+						<!-- Mobile menu toggle--> <a class="navbar-toggle nav-link">
+							<div class="lines">
+								<span></span> <span></span> <span></span>
+							</div>
+					</a> <!-- End mobile menu toggle-->
+					</li>
+
+
+					<li class="dropdown notification-list"><a
+						class="nav-link dropdown-toggle nav-user mr-0"
+						data-toggle="dropdown" href="#" role="button"
+						aria-haspopup="false" aria-expanded="false"> <img
+							src="assets/images/logo-sm.png" alt="user-image"
+							class="rounded-circle"> <small class="pro-user-name ml-1">
+								管理员 </small>
+					</a>
+						<div
+							class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown ">
+							<!-- item-->
+							<div class="dropdown-header noti-title">
+								<h6 class="text-overflow m-0">欢迎 !</h6>
+							</div>
+
+							<!-- item-->
+							<a href="setting.html" class="dropdown-item notify-item"> <i
+								class="fe-settings"></i> <span>配置</span>
+							</a>
+
+
+							<!-- item-->
+							<a href="#" id="chaining-alert" class="dropdown-item notify-item">
+								<i class="fe-edit"></i> <span>修改密码</span>
+							</a>
+
+							<div class="dropdown-divider"></div>
+							<!-- item-->
+							<a href="loginOut" class="dropdown-item notify-item"> <i
+								class="fe-log-out"></i> <span>退出</span>
+							</a>
+
+						</div></li>
+
+				</ul>
+
+				<ul class="list-inline menu-left mb-0">
+					<li class="float-left"><a href="manager.html" class="logo">
+							<span class="logo-lg"> <img
+								src="assets/images/logo-width.png" alt="" height="18">
+						</span> <span class="logo-sm"> <img
+								src="assets/images/logo-sm.png" alt="" height="28">
+						</span>
+					</a></li>
+					<li class="app-search">
+						<form>
+							<input type="text" placeholder="输入关键字以搜索..." class="form-control">
+							<button type="submit" class="sr-only"></button>
+						</form>
+					</li>
+					<li class="float-right">
+						<h1 style="color: white;">动力环境监测平台</h1>
+					</li>
+				</ul>
+			</div>
+
+		</nav>
+		<!-- end topbar-main -->
+
+		<div class="topbar-menu">
+			<div class="container-fluid">
+				<div id="navigation">
+					<!-- Navigation Menu-->
+					<ul class="navigation-menu">
+						<li class="has-submenu"><a href="manager"> <i
+								class="fe-airplay"></i>设备情况
+						</a></li>
+						<li class="has-submenu"><a href="conditioner">运行情况</a></li>
+						<li class="has-submenu"><a href="getCamera"
+							target="view_window"> <i class="fe-layers"></i>视频监控
+						</a></li>
+
+					</ul>
+					<!-- End navigation menu -->
+
+					<div class="clearfix"></div>
+				</div>
+				<!-- end #navigation -->
+			</div>
+			<!-- end container -->
+		</div>
+		<!-- end navbar-custom -->
+	</header>
+	<!-- End Navigation Bar-->
+
+	<div class="wrapper">
+		<div class="container-fluid">
+			<!-- start page title -->
+			<div class="row">
+				<div class="col-12">
+					<div class="page-title-box">
+						<div class="page-title-right">
+							<ol class="breadcrumb m-0">
+								<li class="breadcrumb-item"><a href="#">Seasonts</a></li>
+								<li class="breadcrumb-item active">运行记录</li>
+							</ol>
+						</div>
+						<h4 class="page-title">运行记录</h4>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-body">
+							<ul class="nav nav-tabs mb-3">
+								<li class="nav-item"><a href="#home" data-toggle="tab"
+									aria-expanded="false" class="nav-link active"> 空调开关记录 </a></li>
+								<li class="nav-item"><a href="#profile" data-toggle="tab"
+									aria-expanded="true" class="nav-link "> 温度报警记录 </a></li>
+								<li class="nav-item"><a href="#messages" data-toggle="tab"
+									aria-expanded="false" class="nav-link"> 温湿度历史数据 </a></li>
+								<li class="nav-item"><a href="#equipment" data-toggle="tab"
+									aria-expanded="false" class="nav-link"> 添加温湿度设备 </a></li>
+							</ul>
+							<div class="tab-content">
+								<div class="tab-pane  show active" id="home">
+									<button type="button" id="download" id="btn_download"
+										class="btn btn-primary"
+										onClick="$('#tb_departments').tableExport({fileName: '运行情况', exportDataType:'all', type: 'excel' })">数据导出</button>
+									<div class="card-body">
+										<table id="tb_departments" class="table dt-responsive nowrap">
+										</table>
+									</div>
+									<!-- end card body-->
+								</div>
+								<div class="tab-pane" id="profile">
+									<button type="button" id="download" id="btn_download"
+										class="btn btn-primary"
+										onClick="$('#tb_alarms').tableExport({fileName: '报警数据', exportDataType:'all', type: 'excel' })">数据导出</button>
+									<div class="card-body">
+										<table id="tb_alarms" class="table dt-responsive nowrap">
+										</table>
+									</div>
+									<!-- end card body-->
+								</div>
+								<div class="tab-pane" id="messages">
+									<button type="button" id="download" id="btn_download"
+										class="btn btn-primary"
+										onClick="$('#tb_alarms').tableExport({fileName: '温湿度数据', exportDataType:'all', type: 'excel' })">数据导出</button>
+									<div class="card-body">
+										<table id="tb_temp_humi" class="table dt-responsive nowrap">
+										</table>
+									</div>
+									<!-- end card body-->
+								</div>
+								<div class="tab-pane" id="equipment">
+									<button data-toggle="modal" data-target="#event-modal"
+										class="btn btn-primary"> <i
+										class="mdi mdi-plus-circle-outline"></i> 添加新设备
+									</button>
+									<div class="card-body">
+										<table id="tb_equipment" class="table dt-responsive nowrap">
+										</table>
+									</div>
+									<!-- end card body-->
+								</div>
+							</div>
+
+							<!-- Add New Event MODAL -->
+							<div class="modal fade" id="event-modal" tabindex="-1">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header pr-4 pl-4 border-bottom-0 d-block">
+											<button type="button" class="close" data-dismiss="modal"
+												aria-hidden="true">&times;</button>
+											<h4 class="modal-title">添加新设备</h4>
+										</div>
+										<div class="modal-body pt-3 pr-4 pl-4">
+											<form action="addEquipment" id="ajxaForm">
+												<div class="form-group">
+													<label class="control-label">设备名称</label> <input
+														class="form-control form-white" placeholder="设备描述"
+														type="text" name="tequipment.DevName" />
+												</div>
+												<div class="form-group">
+													<label class="control-label">设备地址</label> 
+													<select
+														class="custom-select" id="adds" name="tequipment.SlaveId">
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
+														<option value="8">8</option>
+														<option value="9">9</option>
+														<option value="10">10</option>
+														<option value="11">11</option>
+														<option value="12">12</option>
+														<option value="13">13</option>
+														<option value="14">14</option>
+														<option value="15">15</option>
+														<option value="16">16</option>
+														<option value="17">17</option>
+														<option value="18">18</option>
+														<option value="19">19</option>
+														<option value="20">20</option>
+														<option value="21">21</option>
+														<option value="22">22</option>
+														<option value="23">23</option>
+														<option value="24">24</option>
+														<option value="25">25</option>
+														<option value="26">26</option>
+														<option value="27">27</option>
+														<option value="28">28</option>
+														<option value="29">29</option>
+														<option value="30">30</option>
+														<option value="31">31</option>
+														<option value="32">32</option>
+														<option value="33">33</option>
+														<option value="34">34</option>
+														<option value="35">35</option>
+														<option value="36">36</option>
+														<option value="37">37</option>
+														<option value="38">38</option>
+														<option value="39">39</option>
+														<option value="40">40</option>
+														<option value="41">41</option>
+														<option value="42">42</option>
+														<option value="43">43</option>
+														<option value="44">44</option>
+														<option value="45">45</option>
+														<option value="46">46</option>
+														<option value="47">47</option>
+														<option value="48">48</option>
+														<option value="49">49</option>
+														<option value="50">50</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<label class="control-label">COM端口</label> <select
+														class="custom-select " id="com" name="tequipment.Comm" >
+														<option value="COM1">COM1</option>
+														<option value="COM2">COM2</option>
+														<option value="COM3">COM3</option>
+														<option value="COM4">COM4</option>
+														<option value="COM5">COM5</option>
+														<option value="COM6">COM6</option>
+														<option value="COM7">COM7</option>
+														<option value="COM8">COM8</option>
+														<option value="COM9">COM9</option>
+														<option value="COM10">COM10</option>
+														<option value="COM11">COM11</option>
+														<option value="COM12">COM12</option>
+														<option value="COM13">COM13</option>
+														<option value="COM14">COM14</option>
+														<option value="COM15">COM15</option>
+														<option value="COM16">COM16</option>
+														<option value="COM17">COM17</option>
+														<option value="COM18">COM18</option>
+														<option value="COM19">COM19</option>
+														<option value="COM20">COM20</option>
+														<option value="COM21">COM21</option>
+														<option value="COM22">COM22</option>
+														<option value="COM23">COM23</option>
+														<option value="COM24">COM24</option>
+														<option value="COM25">COM25</option>
+														<option value="COM26">COM26</option>
+														<option value="COM27">COM27</option>
+														<option value="COM28">COM28</option>
+														<option value="COM29">COM29</option>
+														<option value="COM30">COM30</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<label class="control-label">设备类型</label> <select
+														class="custom-select " id="com" name="tequipment.Type" >
+														<option value="0">温湿度设备</option>
+														<option value="1">烟感设备</option>
+														<option value="2">UPS设备</option>
+													</select>
+												</div>
+
+												<div class="text-right pb-4 pr-4">
+													<button type="button" class="btn btn-light "
+														data-dismiss="modal">关闭</button>
+													<button type="submit" class="btn btn-success save-event  ">增加设备</button>
+												</div>
+											</form>
+										</div>
+									</div>
+									<!-- end modal-content-->
+								</div>
+								<!-- end modal dialog-->
+							</div>
+							<!-- end modal-->
+						</div>
+						<!-- end card-body-->
+					</div>
+					<!-- end card-->
+				</div>
+				<!-- end col-->
+			</div>
+			<!-- end row-->
+		</div>
+	</div>
+	<!-- end wrapper -->
+
+
+	<!-- Footer Start -->
+	<footer class="footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6">陕西孜晟新能源技术服务有限公司 &copy; 2018 - 动力环境监测平台</div>
+				<div class="col-md-6">
+					<div class="text-md-right footer-links d-none d-sm-block">
+						<a href="#" id="about_us">关于我们</a> <a href="#" id="help">帮助</a> <a
+							href="#" id="contack_us">联系我们</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- end Footer -->
+
+
+	<!-- App js -->
+	<script src="js/jquery-1.4.4.min.js"></script>
+	<script src="js/vendor.min.js"></script>
+	<script src="js/app.min.js"></script>
+	<!-- App js -->
+	<script src="js/vendor/sweetalert2.min.js"></script>
+	<script src="js/views/password-alter.js"></script>
+<!-- Toaster js -->
+        <script src="js/vendor/toastr.min.js"></script>
+        <script src="js/jquery.form.js"></script>
+
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-table.min.js"></script>
+	<script src="js/bootstrap-table-zh-CN.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-table-export.js"></script>
+
+	<script type="text/javascript" src="js/tableExport.js"></script>
+
+	<!-- Plugins js -->
+
+	<script src="js/canvasjs.min.js"></script>
+
+
+	<script src="js/views/conditioner.js">
+		
+	</script>
+	<script type="text/javascript">
+	
+	$('#ajxaForm').ajaxForm(function(data) { 
+		 if(data.result==1){
+			  //
+			 toastr["error"]("保存失败","失败");
+		  }else{
+			  //成功
+			  $('#event-modal').modal('hide');
+				toastr["success"]("提交成功","成功");
+		  }
+		});  
+	</script>
+</body>
+</html>

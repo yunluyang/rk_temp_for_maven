@@ -1,0 +1,10 @@
+jdbcUrl = jdbc:mysql://localhost/rsmonitor?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+user = root
+password = 12345687
+devMode = true
+host = 127.0.0.1
+port = 9001
+cip = 192.168.0.84
+cport = 80
+cuser = admin
+cpw = aerors123

@@ -1,0 +1,26 @@
+cron4j=task1, task2 ,task3,task4,task5
+task1.cron=*/20 * * * *
+task1.class=utils.ConditionerTask
+task1.daemon=true
+task1.enable=true
+ 
+task2.cron=*/3 * * * *
+task2.class=utils.HistoryTask
+task2.daemon=true
+task2.enable=true
+
+task3.cron=0 1 * * *
+task3.class=utils.EcxelTask
+task3.daemon=true
+task3.enable=true
+
+task4.cron=*/1 * * * *
+task4.class=utils.DeviceDataTask
+task4.daemon=true
+task4.enable=true
+
+
+task5.cron=*/1 * * * *
+task5.class=utils.UPSTask
+task5.daemon=true
+task5.enable=true
