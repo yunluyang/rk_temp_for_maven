@@ -57,6 +57,25 @@ public class ByteUtils {
 		return buffer.toString();
 	}
 
+	
+	/**
+	 * 16进制字符串转换数组
+	 * @param hex
+	 * @return
+	 */
+	public static byte[] hex2byte(String hex) {
+        String digital = "0123456789ABCDEF";
+        String hex1 = hex.replace("", "");
+        char[] hex2char = hex1.toCharArray();
+        byte[] bytes = new byte[hex1.length() / 2];
+        byte temp;
+        for (int p = 0; p < bytes.length; p++) {
+            temp = (byte) (digital.indexOf(hex2char[2 * p]) * 16);
+            temp += digital.indexOf(hex2char[2 * p + 1]);
+            bytes[p] = (byte) (temp & 0xff);
+        }
+        return bytes;
+    }
 	/**
 	 * byte转十六进制字符
 	 * 

@@ -24,6 +24,16 @@ private static final Tequipment dao = new Tequipment().dao();
 		return dao.paginate(pageNumber, pageSize, "select *", "from tequipment  order by deviceKey desc");
 	}
 	
+	public List<Tequipment> queryByType(int type){
+		String sql = "select * from tequipment where Type = ? order by deviceKey desc";
+		return dao.find(sql,type);
+	}
+	
+	public Tequipment queryBySlaveId(int SlaveId){
+		String sql = "select * from tequipment where SlaveId = ? order by deviceKey desc";
+		return dao.findFirst(sql,SlaveId);
+	}
+	
 	public List<Tequipment> queryAll(){
 		String sql = "select * from tequipment order by deviceKey desc";
 		return dao.find(sql);
