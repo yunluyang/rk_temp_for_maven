@@ -53,7 +53,7 @@ public class IndexController extends Controller {
             ")";
 
 	public void index() {
-		render("manager.html");
+		render("/index/index.html");
 	}
 	
 	public void manager() {

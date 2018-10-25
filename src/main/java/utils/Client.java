@@ -71,6 +71,7 @@ public class Client extends Thread {
             byte[] buf = new byte[9];
             while (s.read(buf) != -1) {
                 String dataString = ByteUtils.byteArrayToHexString(buf);
+                System.out.println(dataString);
 				String temSb= dataString.substring(10, 14);
 				String humSb = dataString.substring(6, 10);
 				int SlaveId = Integer.parseInt(dataString.substring(0, 2));
@@ -206,10 +207,10 @@ public class Client extends Thread {
             					// TODO Auto-generated catch block
             					e.printStackTrace();
             				}
+                            os.flush();
             			}
-                        os.flush();
         				try {
-        					Thread.sleep(1000);
+        					Thread.sleep(3000);
         				} catch (InterruptedException e) {
         					// TODO Auto-generated catch block
         					e.printStackTrace();
