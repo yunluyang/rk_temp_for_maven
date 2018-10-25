@@ -20,7 +20,27 @@ public class DeviceDate implements Serializable{
     private int SomgStatus;
     private int Type; 
 
-    @Override
+    public DeviceDate() {
+		super();
+	}
+
+	public DeviceDate(int devKey, String devName, String devTempName, String devTempValue, String devHumiName,
+			String devHumiValue, Boolean devStatus, int tempStatus, int humiStatus, int somgStatus, int type) {
+		super();
+		DevKey = devKey;
+		DevName = devName;
+		DevTempName = devTempName;
+		DevTempValue = devTempValue;
+		DevHumiName = devHumiName;
+		DevHumiValue = devHumiValue;
+		DevStatus = devStatus;
+		TempStatus = tempStatus;
+		HumiStatus = humiStatus;
+		SomgStatus = somgStatus;
+		Type = type;
+	}
+
+	@Override
 	public String toString() {
 		return "DeviceDate [DevKey=" + DevKey + ", DevName=" + DevName + ", DevTempName=" + DevTempName
 				+ ", DevTempValue=" + DevTempValue + ", DevHumiName=" + DevHumiName + ", DevHumiValue=" + DevHumiValue

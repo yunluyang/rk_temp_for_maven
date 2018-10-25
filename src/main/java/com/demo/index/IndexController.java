@@ -1,5 +1,6 @@
 package com.demo.index;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -29,7 +30,6 @@ import event.DeviceDate;
 
 @Before(UserInterceptor.class)
 public class IndexController extends Controller {
-	
 	TBhistoryService historyS = enhance(TBhistoryService.class);
 	TBconditionerService conditionerS = enhance(TBconditionerService.class);
 	TBalarmService alarmS = enhance(TBalarmService.class);
@@ -81,7 +81,14 @@ public class IndexController extends Controller {
 	public void getDeviceData(){
 		/*List<Tequipment> list = equipmentS.queryAll();
 		Modbus4jUtils.modbusTCP(list,set);*/
-		List<DeviceDate> result = tempRedis.get("result");
+		List<DeviceDate> result = new ArrayList<>();
+		List<Tequipment> list = equipmentS.queryByType(0);
+		for(Tequipment eTequipment :list){
+			if(tempRedis.exists(eTequipment.getDeviceKey())){
+				DeviceDate deviceDate = tempRedis.get(eTequipment.getDeviceKey());
+				result.add(deviceDate);
+			}
+		}
 		setAttr("result", result);
 		setAttr("Q6",tempRedis.get("Q6"));
 		setAttr("WA",tempRedis.get("WA"));

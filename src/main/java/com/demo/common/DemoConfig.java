@@ -17,6 +17,7 @@ import com.jfinal.plugin.redis.RedisPlugin;
 import com.jfinal.template.Engine;
 
 import cn.dreampie.quartz.QuartzPlugin;
+import utils.Client;
 import utils.ConditionerTask;
 import utils.DeviceDataTask;
 import utils.EcxelTask;
@@ -43,7 +44,7 @@ public class DemoConfig extends JFinalConfig {
 		/**
 		 * 特别注意：Eclipse 之下建议的启动方式
 		 */
-		JFinal.start("src/main/webapp", 80, "/");
+		JFinal.start("src/main/webapp", 8080, "/");
 		
 		/**
 		 * 特别注意：IDEA 之下建议的启动方式，仅比 eclipse 之下少了最后一个参数
@@ -121,12 +122,14 @@ public class DemoConfig extends JFinalConfig {
 
 	@Override
 	public void afterJFinalStart() {
-		
+	    Client clientTest=new Client(PropKit.get("socket_client"), PropKit.getInt("socket_client_port"));
+        clientTest.start();
 	}
 
 	@Override
 	public void beforeJFinalStop() {
 		// TODO Auto-generated method stub
+	
 	}
 	
 	

@@ -17,7 +17,7 @@ import java.util.TimerTask;
 import event.ByteUtils;
 
 class TcpDemo {
-    private static String SERVER_ADDR = "192.168.1.176";
+    private static String SERVER_ADDR = "192.168.1.7";
     private static int PORT = 26;
     private static String EXIT = "exit";
 

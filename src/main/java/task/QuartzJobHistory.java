@@ -35,13 +35,9 @@ public class QuartzJobHistory implements Job {
 		String temRange = set.getAlarmTemMin()+"~"+set.getAlarmTemMax();
 		String humRange = set.getAlarmHumMin()+"~"+set.getAlarmHumMin();
 		List<Tequipment> list = equipmentS.queryAll();
-		List<DeviceDate> result = Redis.use("temp").get("result");
-		System.out.println("QuartzJobHistory:"+result.get(0).toString());
-		int i=0;
 		for(Tequipment equipment :list ){
-			if(equipment.getType()==0) {
-			if(result!=null&&result.size()>0){
-				DeviceDate device = result.get(i);
+			if(Redis.use("temp").exists(equipment.getDeviceKey())&&equipment.getType()==0){
+				DeviceDate device = Redis.use("temp").get(equipment.getDeviceKey());
 				if(device.getType()==0) {
 					Double huim = Double.parseDouble(device.getDevHumiValue());
 					Double temp = Double.parseDouble(device.getDevTempValue());
@@ -98,9 +94,6 @@ public class QuartzJobHistory implements Job {
 						}
 					}
 				}
-				
-			}
-			i++;
 			}
 		}
         System.out.println("QuartzJobHistory:" + new Date());

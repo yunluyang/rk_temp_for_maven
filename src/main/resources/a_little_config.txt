@@ -8,3 +8,5 @@ cip = 192.168.0.84
 cport = 80
 cuser = admin
 cpw = aerors123
+socket_client = 192.168.1.7
+socket_client_port = 26
